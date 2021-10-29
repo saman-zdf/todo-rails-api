@@ -18,7 +18,8 @@ class Api::V1::TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      render json: @todo, status: :created, location: @todo
+      # location has to be changedif you create something from react 
+      render json: @todo, status: :created, location: api_v1_todos_path(@todo)
     else
       render json: @todo.errors, status: :unprocessable_entity
     end
